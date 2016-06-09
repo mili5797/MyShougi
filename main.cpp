@@ -2,11 +2,11 @@
 
 using namespace std;
 
-int test();
+//int test_arg();
 
 int main()
 {
-    test();
+    //test_arg();
     cout << "Hello world!" << endl;
     return 0;
 }

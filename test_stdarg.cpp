@@ -35,7 +35,7 @@ int test_undertermind_arg(int num,...)
     return 0;
 }
 
-int test()
+int test_arg()
 {
     test_undertermind_arg(2,1,0,-1);
     test_undertermind_arg(4,2,1,20,10,-1);
