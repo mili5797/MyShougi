@@ -1,0 +1,8 @@
+koma.cpp
+koma.cpp
+koma.cpp
+*.o
+*.layout
+MyShougi.depend
+*.cbp
+bin/Debug/MyShougi.exe

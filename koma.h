@@ -7,6 +7,10 @@
 #define NUM_PLAYER 2
 #endif // NUM_PLAYER
 
+#ifndef END_OF_ARG
+#define END_OF_ARG '~'
+#endif // END_OF_ARG
+
 typedef enum _where{on_table,in_hand,now_hidden,where_total} Where;
 typedef enum _owner{pub=0,player1,player2,owner_total=NUM_PLAYER+1} Owner;
 typedef enum _dir{Dir_Forward,Dir_RFront,Dir_Right,Dir_RBack,Dir_Backward,Dir_LBack,Dir_Left,Dir_LFront,Dir_total} Direct;
