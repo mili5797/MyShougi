@@ -37,13 +37,13 @@ public:
     _koma();
     _koma& promote();
     static int get_total_num();
-    static void add_total_num();
 protected:
     Where where;
     Owner owner;
     bool can_promotion;
     bool promotion;
 private:
+    static void add_total_num();
     static int total_num;
 }Koma; //abstract class of koma
 

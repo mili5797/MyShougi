@@ -6,13 +6,11 @@
 typedef class _king:public Jump{
 public:
     _king();
-    static int get_total_num_king();
-    static void add_total_num_king();
+    static int get_total_num();
 protected:
 
 private:
-    //bool can_promotion;
-    //bool promotion;
+    static void add_total_num_king();
     static int total_num_king;
 }King;
 typedef class _king Oushou; //The king is called Oushou in Shougi in Japanese
@@ -22,33 +20,33 @@ typedef class _king Lion; //The king is called Lion in Animal Shougi
 typedef class _elephant:public Jump{
 public:
     _elephant();
-    static int get_total_num_elephant();
-    static void add_total_num_elephant();
+    static int get_total_num();
 protected:
 
 private:
+    static void add_total_num_elephant();
     static int total_num_elephant;
 }Elephant;
 
 typedef class _giraffe:public Jump{
 public:
     _giraffe();
-    static int get_total_num_giraffe();
-    static void add_total_num_giraffe();
+    static int get_total_num();
 protected:
 
 private:
+    static void add_total_num_giraffe();
     static int total_num_giraffe;
 }Giraffe;
 
 typedef class _pawn:public Jump{
 public:
     _pawn();
-    static int get_total_num_pawn();
-    static void add_total_num_pawn();
+    static int get_total_num();
 protected:
 
 private:
+    static void add_total_num_pawn();
     static int total_num_pawn;
 }Pawn;
 typedef class _pawn Fuhyou; //The pawn is called Fuhyou in Shougi in Japanese
