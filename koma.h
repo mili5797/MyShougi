@@ -11,9 +11,9 @@
 #define END_OF_ARG '~'
 #endif // END_OF_ARG
 
-typedef enum _where{on_table,in_hand,now_hidden,where_total} Where;
+typedef enum _where{on_table=0,in_hand,now_hidden,where_total} Where;
 typedef enum _owner{pub=0,player1,player2,owner_total=NUM_PLAYER+1} Owner;
-typedef enum _dir{Dir_Forward,Dir_RFront,Dir_Right,Dir_RBack,Dir_Backward,Dir_LBack,Dir_Left,Dir_LFront,Dir_total} Direct;
+typedef enum _dir{Dir_Forward=0,Dir_RFront,Dir_Right,Dir_RBack,Dir_Backward,Dir_LBack,Dir_Left,Dir_LFront,Dir_total} Direct;
 
 typedef class _koma_move{
 public:
@@ -47,14 +47,14 @@ private:
     static int total_num;
 }Koma; //abstract class of koma
 
-typedef class _rush_koma:Koma{
+typedef class _rush_koma:public Koma{
 public:
 
 protected:
     bool direct[Dir_total];
 }Rush; //abstract class of koma which using rush to move
 
-typedef class _jump_koma:Koma{
+typedef class _jump_koma:public Koma{
 public:
 
 protected:

@@ -3,7 +3,7 @@
 
 #include "koma.h"
 
-typedef class _king:Jump{
+typedef class _king:public Jump{
 public:
     _king();
     static int get_total_num_king();
@@ -11,13 +11,15 @@ public:
 protected:
 
 private:
+    //bool can_promotion;
+    //bool promotion;
     static int total_num_king;
 }King;
 typedef class _king Oushou; //The king is called Oushou in Shougi in Japanese
 typedef class _king Ou; //The Oushou is also called Ou in short
 typedef class _king Lion; //The king is called Lion in Animal Shougi
 
-typedef class _elephant:Jump{
+typedef class _elephant:public Jump{
 public:
     _elephant();
     static int get_total_num_elephant();
@@ -28,7 +30,7 @@ private:
     static int total_num_elephant;
 }Elephant;
 
-typedef class _giraffe:Jump{
+typedef class _giraffe:public Jump{
 public:
     _giraffe();
     static int get_total_num_giraffe();
@@ -39,7 +41,7 @@ private:
     static int total_num_giraffe;
 }Giraffe;
 
-typedef class _pawn:Jump{
+typedef class _pawn:public Jump{
 public:
     _pawn();
     static int get_total_num_pawn();
