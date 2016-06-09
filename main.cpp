@@ -2,11 +2,11 @@
 
 using namespace std;
 
-int test_static();
+//int test_static();
 
 int main()
 {
-    test_static();
+    //test_static();
     cout << "Hello world!" << endl;
     return 0;
 }
