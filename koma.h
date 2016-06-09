@@ -14,8 +14,10 @@ typedef enum _dir{Dir_Forward,Dir_RFront,Dir_Right,Dir_RBack,Dir_Backward,Dir_LB
 typedef class _koma_move{
 public:
     _koma_move();
-    _koma_move& set_move(int x,int y);
-    _koma_move& set_if(int num,...);
+    _koma_move(int move_x,int move_y);
+    _koma_move(int move_x,int move_y,int num_if,...);
+    _koma_move& set_move(int move_x,int move_y);
+    _koma_move& set_if(int num_if,...);
     unsigned int get_num_if();
     int get_move_x();
     int get_move_y();
