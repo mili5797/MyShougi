@@ -156,3 +156,41 @@ std::vector<int> _koma_move::get_if_y()
     return this->if_y;
 }
 
+int _koma::total_num=0;
+
+_koma::_koma()
+{
+    _koma::add_total_num();
+    this->can_promotion=false;
+    this->promotion=false;
+}
+
+_koma& _koma::promote()
+{
+    if(!this->can_promotion)
+    {
+        throw "Can't promote in Koma::promote";
+    }
+    else if(this->promotion)
+    {
+        throw "Already promoted in Koma::promote";
+    }
+    else
+    {
+        this->promotion=true;
+    }
+
+    return *this;
+}
+
+int _koma::get_total_num()
+{
+    return Koma::total_num;
+}
+
+void _koma::add_total_num()
+{
+    Koma::total_num++;
+    return;
+}
+

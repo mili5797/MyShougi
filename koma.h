@@ -36,24 +36,27 @@ typedef class _koma{
 public:
     _koma();
     _koma& promote();
+    static int get_total_num();
+    static void add_total_num();
 protected:
-    static int total_num;
     Where where;
     Owner owner;
     bool can_promotion;
     bool promotion;
+private:
+    static int total_num;
 }Koma; //abstract class of koma
 
 typedef class _rush_koma:Koma{
 public:
-    _rush_koma();
+
 protected:
     bool direct[Dir_total];
 }Rush; //abstract class of koma which using rush to move
 
 typedef class _jump_koma:Koma{
 public:
-    _jump_koma();
+
 protected:
      std::vector<Move> can_go;
 }Jump; //abstract class of koma which using jump to move
