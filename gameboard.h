@@ -11,7 +11,7 @@ public:
 protected:
     unsigned int x,y;
     std::vector<std::vector<int> > board;
-    std::vector<Koma> koma_list;
+    std::vector<Koma*> koma_list;
 private:
 
 } Gameboard;
