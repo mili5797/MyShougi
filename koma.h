@@ -14,6 +14,7 @@
 typedef enum _where{on_table=0,in_hand,now_hidden,where_total} Where;
 typedef enum _owner{pub=0,player1,player2,owner_total=NUM_PLAYER+1} Owner;
 typedef enum _dir{Dir_Forward=0,Dir_RFront,Dir_Right,Dir_RBack,Dir_Backward,Dir_LBack,Dir_Left,Dir_LFront,Dir_total} Direct;
+typedef enum _koma_name{Koma_King=0,Koma_Elephant,Koma_Giraffe,Koma_Pawn} Name;
 
 typedef class _koma_move{
 public:
@@ -37,11 +38,13 @@ public:
     _koma();
     _koma& promote();
     static int get_total_num();
+    int get_koma_name();
 protected:
     Where where;
     Owner owner;
     bool can_promotion;
     bool promotion;
+    Name koma_name;
 private:
     static void add_total_num();
     static int total_num;
