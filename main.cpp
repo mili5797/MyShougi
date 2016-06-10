@@ -1,4 +1,6 @@
 #include <iostream>
+#include "koma.h"
+#include "AnimalShougiSKoma.h"
 
 using namespace std;
 
