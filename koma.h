@@ -45,6 +45,7 @@ protected:
     bool can_promotion;
     bool promotion;
     Name koma_name;
+    friend class _gameboard;
 private:
     static void add_total_num();
     static int total_num;
