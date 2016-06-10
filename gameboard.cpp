@@ -22,6 +22,24 @@ _gameboard& _gameboard::initial_board()
     return *this;
 }
 
+_gameboard& _gameboard::set_owner_where(unsigned int koma_id,Owner owner,Where where)
+{
+    this->set_owner(koma_id,owner);
+    this->set_where(koma_id,where);
+    return *this;
+}
+_gameboard& _gameboard::set_owner(unsigned int koma_id,Owner owner)
+{
+    this->koma_list[koma_id]->owner=owner;
+    return *this;
+}
+
+_gameboard& _gameboard::set_where(unsigned int koma_id,Where where)
+{
+    this->koma_list[koma_id]->where=where;
+    return *this;
+}
+
 
 _small_gameboard::_small_gameboard()
 {
@@ -31,20 +49,29 @@ _small_gameboard::_small_gameboard()
 
     this->koma_list.push_back(new King);
     this->board[1][0]=0;
+    this->set_owner_where(0,player1,on_table);
     this->koma_list.push_back(new King);
     this->board[1][3]=1;
+    this->set_owner_where(1,player2,on_table);
     this->koma_list.push_back(new Elephant);
     this->board[2][0]=2;
+    this->set_owner_where(2,player1,on_table);
     this->koma_list.push_back(new Elephant);
     this->board[0][3]=3;
+    this->set_owner_where(3,player2,on_table);
     this->koma_list.push_back(new Giraffe);
     this->board[0][0]=4;
+    this->set_owner_where(4,player1,on_table);
     this->koma_list.push_back(new Giraffe);
     this->board[2][3]=5;
+    this->set_owner_where(5,player2,on_table);
     this->koma_list.push_back(new Pawn);
     this->board[1][1]=6;
+    this->set_owner_where(6,player1,on_table);
     this->koma_list.push_back(new Pawn);
     this->board[1][2]=7;
+    this->set_owner_where(7,player2,on_table);
+
 //          y
 //   E K G  3
 //     P    2
