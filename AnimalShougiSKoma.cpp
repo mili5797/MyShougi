@@ -20,6 +20,7 @@ _king::_king()
     this->can_go.push_back(Move(-1,0));
     this->can_go.push_back(Move(-1,1));
 
+    this->koma_name=Koma_King;
     _king::add_total_num_king();
 }
 
@@ -44,6 +45,7 @@ _elephant::_elephant()
     this->can_go.push_back(Move(-1,-1));
     this->can_go.push_back(Move(-1,1));
 
+    this->koma_name=Koma_Elephant;
     _elephant::add_total_num_elephant();
 }
 
@@ -68,6 +70,7 @@ _giraffe::_giraffe()
     this->can_go.push_back(Move(0,-1));
     this->can_go.push_back(Move(-1,0));
 
+    this->koma_name=Koma_Giraffe;
     _giraffe::add_total_num_giraffe();
 }
 
@@ -89,6 +92,7 @@ _pawn::_pawn()
 
     this->can_go.push_back(Move(0,1));
 
+    this->koma_name=Koma_Pawn;
     _pawn::add_total_num_pawn();
 }
 
