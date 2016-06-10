@@ -1,0 +1,5 @@
+*.exe
+*.cbp
+MyShougi.depend
+*.layout
+*.o
