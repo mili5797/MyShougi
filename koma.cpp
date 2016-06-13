@@ -156,7 +156,7 @@ std::vector<int> _koma_move::get_if_y()
     return this->if_y;
 }
 
-int _koma::total_num=0;
+unsigned int _koma::total_num=0;
 
 _koma::_koma()
 {
@@ -185,7 +185,7 @@ _koma& _koma::promote()
     return *this;
 }
 
-int _koma::get_total_num()
+unsigned int _koma::get_total_num()
 {
     return Koma::total_num;
 }
