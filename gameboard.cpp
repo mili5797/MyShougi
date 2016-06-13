@@ -42,19 +42,135 @@ _gameboard& _gameboard::set_where(unsigned int koma_id,Where where)
 
 std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
 {
-    std::vector<Move> vecMove;
+    int koma_x=-1,koma_y=-1;
+    for (unsigned int i=0;i<this->x;i++)
+    {
+        for(unsigned int j=0;j<this->y;j++)
+        {
+            if(this->board[i][j]==(int)koma_id)
+            {
+                koma_x=i;
+                koma_y=j;
+                return koma_can_go(koma_x,koma_y);
+            }
+        }
+    }
 
-    return vecMove;
+    return koma_can_go(koma_x,koma_y);
 }
 
 std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_y)
 {
-    if (this->board[koma_x][koma_y]==-1)
+    std::vector<Move> vecMove;
+    int& koma_id=this->board[koma_x][koma_y];
+    if (koma_id==-1)
     {
         throw "bad koma_x and koma_y in Gameboard koma_can_go";
     }
 
-    return this->koma_can_go(this->board[koma_x][koma_y]);
+    Koma& koma=*(this->koma_list[koma_id]);
+
+    if(koma.rush==true)
+    {
+        for(unsigned int i=0;i<Dir_total;i++)
+        {
+            if(koma.direct[i]==true)
+            {
+                int dx=0,dy=0;
+                while(1)
+                {
+                    switch (i)
+                    {
+                        case Dir_Forward:
+                            dy++;
+                            break;
+                        case Dir_RFront:
+                            dx++;
+                            dy++;
+                        case Dir_Right:
+                            dx++;
+                            break;
+                        case Dir_RBack:
+                            dx++;
+                            dy--;
+                            break;
+                        case Dir_Backward:
+                            dy--;
+                            break;
+                        case Dir_LBack:
+                            dx--;
+                            dy--;
+                            break;
+                        case Dir_Left:
+                            dx--;
+                            break;
+                        case Dir_LFront:
+                            dx--;
+                            dy++;
+                            break;
+                    }
+
+                    if(koma_x+dx>this->x||koma_x+dx<0||koma_y+dy>this->y||koma_y+dy<0)
+                    {
+                        break;
+                    }
+                    else if(this->board[koma_x+dx][koma_y+dy]==-1)
+                    {
+                        vecMove.push_back(Move(dx,dy));
+                    }
+                    else if(this->koma_list[this->board[koma_x+dx][koma_y+dy]]->owner==koma.owner)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        vecMove.push_back(Move(dx,dy));
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if(koma.jump==true)
+    {
+        for(unsigned int i=0;i<koma.can_go.size();i++)
+        {
+            int dx=koma.can_go[i].get_move_x();
+            int dy=koma.can_go[i].get_move_y();
+            if (koma_x+dx>this->x||koma_x+dx<0||koma_y+dy>this->y||koma_y+dy<0)
+            {
+                continue;
+            }
+            else if(this->board[koma_x+dx][koma_y+dy]==-1)
+            {
+                ;
+            }
+            else if(this->koma_list[this->board[koma_x+dx][koma_y+dy]]->owner==koma.owner)
+            {
+                continue;
+            }
+
+            bool can=true;
+
+            std::vector<int> if_dx=koma.can_go[i].get_if_x(),if_dy=koma.can_go[i].get_if_y();
+            for(unsigned int j=0;j<koma.can_go[i].get_num_if();j++)
+            {
+                if(this->board[koma_x+if_dx[j]][koma_y+if_dy[j]]!=-1)
+                {
+                    can=false;
+                    break;
+                }
+            }
+
+            if(can == true)
+            {
+                vecMove.push_back(Move(dx,dy));
+            }
+        }
+    }
+
+    return vecMove;
 }
 
 _small_gameboard::_small_gameboard()
