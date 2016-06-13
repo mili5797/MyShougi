@@ -46,6 +46,9 @@ protected:
     bool promotion;
     Name koma_name;
     friend class _gameboard;
+    bool direct[Dir_total]; //Rush
+    std::vector<Move> can_go; //Jump
+    bool rush,jump;
 private:
     static void add_total_num();
     static int total_num;
@@ -53,16 +56,16 @@ private:
 
 typedef class _rush_koma:public Koma{
 public:
-
+    _rush_koma();
 protected:
-    bool direct[Dir_total];
+
 }Rush; //abstract class of koma which using rush to move
 
 typedef class _jump_koma:public Koma{
 public:
-
+    _jump_koma();
 protected:
-     std::vector<Move> can_go;
+
 }Jump; //abstract class of koma which using jump to move
 
 #endif // __KOMA_H_

@@ -163,6 +163,8 @@ _koma::_koma()
     _koma::add_total_num();
     this->can_promotion=false;
     this->promotion=false;
+    this->rush=false;
+    this->jump=false;
 }
 
 _koma& _koma::promote()
@@ -194,3 +196,13 @@ void _koma::add_total_num()
     return;
 }
 
+_rush_koma::_rush_koma()
+{
+    this->rush=true;
+    this->jump=false;
+}
+_jump_koma::_jump_koma()
+{
+    this->rush=false;
+    this->jump=true;
+}
