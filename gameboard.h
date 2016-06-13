@@ -14,8 +14,11 @@ protected:
     _gameboard& set_where(unsigned int koma_id,Where where);
     std::vector<Move> koma_can_go(unsigned int koma_id);
     std::vector<Move> koma_can_go(unsigned int koma_x,unsigned int koma_y);
+    std::vector<Move> koma_can_put(unsigned int koma_id);
+    std::vector<Move> koma_can_put(Owner owner,unsigned int index);
     unsigned int x,y;
     std::vector<std::vector<int> > board;
+    std::vector<int> owner_hand[owner_total];
     std::vector<Koma*> koma_list;
 private:
 
