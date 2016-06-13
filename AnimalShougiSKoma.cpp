@@ -1,10 +1,10 @@
 #include "koma.h"
 #include "AnimalShougiSKoma.h"
 
-int _king::total_num_king=0;
-int _elephant::total_num_elephant=0;
-int _giraffe::total_num_giraffe=0;
-int _pawn::total_num_pawn=0;
+unsigned int _king::total_num_king=0;
+unsigned int _elephant::total_num_elephant=0;
+unsigned int _giraffe::total_num_giraffe=0;
+unsigned int _pawn::total_num_pawn=0;
 
 _king::_king()
 {
@@ -24,7 +24,7 @@ _king::_king()
     _king::add_total_num_king();
 }
 
-int _king::get_total_num()
+unsigned int _king::get_total_num()
 {
     return _king::total_num_king;
 }
@@ -49,7 +49,7 @@ _elephant::_elephant()
     _elephant::add_total_num_elephant();
 }
 
-int _elephant::get_total_num()
+unsigned int _elephant::get_total_num()
 {
     return _elephant::total_num_elephant;
 }
@@ -74,7 +74,7 @@ _giraffe::_giraffe()
     _giraffe::add_total_num_giraffe();
 }
 
-int _giraffe::get_total_num()
+unsigned int _giraffe::get_total_num()
 {
     return _giraffe::total_num_giraffe;
 }
@@ -96,7 +96,7 @@ _pawn::_pawn()
     _pawn::add_total_num_pawn();
 }
 
-int _pawn::get_total_num()
+unsigned int _pawn::get_total_num()
 {
     return _pawn::total_num_pawn;
 }

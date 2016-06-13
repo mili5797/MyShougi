@@ -37,7 +37,7 @@ typedef class _koma{
 public:
     _koma();
     _koma& promote();
-    static int get_total_num();
+    static unsigned int get_total_num();
     int get_koma_name();
 protected:
     Where where;
@@ -51,7 +51,7 @@ protected:
     bool rush,jump;
 private:
     static void add_total_num();
-    static int total_num;
+    static unsigned int total_num;
 }Koma; //abstract class of koma
 
 typedef class _rush_koma:public Koma{
