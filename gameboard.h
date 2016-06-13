@@ -12,6 +12,8 @@ protected:
     _gameboard& set_owner_where(unsigned int koma_id,Owner owner,Where where);
     _gameboard& set_owner(unsigned int koma_id,Owner owner);
     _gameboard& set_where(unsigned int koma_id,Where where);
+    std::vector<Move> koma_can_go(unsigned int koma_id);
+    std::vector<Move> koma_can_go(unsigned int koma_x,unsigned int koma_y);
     unsigned int x,y;
     std::vector<std::vector<int> > board;
     std::vector<Koma*> koma_list;

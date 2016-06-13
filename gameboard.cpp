@@ -40,6 +40,22 @@ _gameboard& _gameboard::set_where(unsigned int koma_id,Where where)
     return *this;
 }
 
+std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
+{
+    std::vector<Move> vecMove;
+
+    return vecMove;
+}
+
+std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_y)
+{
+    if (this->board[koma_x][koma_y]==-1)
+    {
+        throw "bad koma_x and koma_y in Gameboard koma_can_go";
+    }
+
+    return this->koma_can_go(this->board[koma_x][koma_y]);
+}
 
 _small_gameboard::_small_gameboard()
 {
