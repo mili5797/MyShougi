@@ -236,11 +236,11 @@ std::vector<Move> _gameboard::koma_can_put(Owner owner,unsigned int index)
             {
                 continue;
             }
-            else if((koma.koma_name!=Koma_Pawn)||false)
+            else if((koma.get_koma_name()!=Koma_Pawn)||false)
             {
                 vecMove.push_back(Move(i,j));
             }
-            else if((koma.koma_name!=Koma_Pawn)||false)
+            else if((koma.get_koma_name()!=Koma_Pawn)||false)
             {
                 if(j!=(this->y)-1)
                 {
