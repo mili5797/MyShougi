@@ -37,6 +37,7 @@ typedef class _koma{
 public:
     _koma();
     _koma& promote();
+    bool promotable();
     static unsigned int get_total_num();
     Name get_koma_name();
 protected:

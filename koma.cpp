@@ -185,6 +185,11 @@ _koma& _koma::promote()
     return *this;
 }
 
+bool _koma::promotable()
+{
+    return this->can_promotion;
+}
+
 unsigned int _koma::get_total_num()
 {
     return Koma::total_num;
