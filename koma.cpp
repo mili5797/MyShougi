@@ -180,9 +180,15 @@ _koma& _koma::promote()
     else
     {
         this->promotion=true;
+        this->koma_promote();
     }
 
     return *this;
+}
+
+bool _koma::promotable()
+{
+    return this->can_promotion;
 }
 
 unsigned int _koma::get_total_num()

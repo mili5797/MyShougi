@@ -10,6 +10,7 @@ public:
 protected:
 
 private:
+    virtual _koma& koma_promote();
     static void add_total_num_king();
     static unsigned int total_num_king;
 }King;
@@ -24,6 +25,7 @@ public:
 protected:
 
 private:
+    virtual _koma& koma_promote();
     static void add_total_num_elephant();
     static unsigned int total_num_elephant;
 }Elephant;
@@ -35,6 +37,7 @@ public:
 protected:
 
 private:
+    virtual _koma& koma_promote();
     static void add_total_num_giraffe();
     static unsigned int total_num_giraffe;
 }Giraffe;
@@ -46,6 +49,7 @@ public:
 protected:
 
 private:
+    virtual _koma& koma_promote();
     static void add_total_num_pawn();
     static unsigned int total_num_pawn;
 }Pawn;

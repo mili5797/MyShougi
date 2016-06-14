@@ -35,6 +35,16 @@ void _king::add_total_num_king()
     return;
 }
 
+_koma& _king::koma_promote()
+{
+    if(!this->promotable())
+    {
+        throw "Undifined error in King::koma_promote";
+    }
+    return *this;
+}
+
+
 _elephant::_elephant()
 {
     this->promotion=false;
@@ -59,6 +69,16 @@ void _elephant::add_total_num_elephant()
     _elephant::total_num_elephant++;
     return;
 }
+
+_koma& _elephant::koma_promote()
+{
+    if(!this->promotable())
+    {
+        throw "Undifined error in Elephant::koma_promote";
+    }
+    return *this;
+}
+
 
 _giraffe::_giraffe()
 {
@@ -85,6 +105,16 @@ void _giraffe::add_total_num_giraffe()
     return;
 }
 
+_koma& _giraffe::koma_promote()
+{
+    if(!this->promotable())
+    {
+        throw "Undifined error in Giraffe::koma_promote";
+    }
+    return *this;
+}
+
+
 _pawn::_pawn()
 {
     this->promotion=false;
@@ -107,3 +137,23 @@ void _pawn::add_total_num_pawn()
     return;
 }
 
+_koma& _pawn::koma_promote()
+{
+    if(!this->promotable())
+    {
+        throw "Undifined error in Pawn::koma_promote";
+    }
+    this->can_go.push_back(Move(1,1));
+    this->can_go.push_back(Move(1,0));
+    this->can_go.push_back(Move(0,-1));
+    this->can_go.push_back(Move(-1,0));
+    this->can_go.push_back(Move(-1,1));
+
+    //x -1 0 1
+    //   . . .  1
+    //   . p .  0
+    //     .   -1
+    //          y
+
+    return *this;
+}
