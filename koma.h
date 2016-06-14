@@ -38,7 +38,7 @@ public:
     _koma();
     _koma& promote();
     static unsigned int get_total_num();
-    int get_koma_name();
+    Name get_koma_name();
 protected:
     Where where;
     Owner owner;

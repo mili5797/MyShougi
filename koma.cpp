@@ -190,6 +190,11 @@ unsigned int _koma::get_total_num()
     return Koma::total_num;
 }
 
+Name _koma::get_koma_name()
+{
+    return this->koma_name;
+}
+
 void _koma::add_total_num()
 {
     Koma::total_num++;
