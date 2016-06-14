@@ -8,14 +8,17 @@ typedef class _gameboard{
 public:
     _gameboard();
     _gameboard& initial_board();
+
+    std::vector<Move> koma_can_go(unsigned int koma_id);
+    std::vector<Move> koma_can_go(unsigned int koma_x,unsigned int koma_y);
+
+    std::vector<Move> koma_can_drop(unsigned int koma_id);
+    std::vector<Move> koma_can_drop(Owner owner,unsigned int index);
 protected:
     _gameboard& set_owner_where(unsigned int koma_id,Owner owner,Where where);
     _gameboard& set_owner(unsigned int koma_id,Owner owner);
     _gameboard& set_where(unsigned int koma_id,Where where);
-    std::vector<Move> koma_can_go(unsigned int koma_id);
-    std::vector<Move> koma_can_go(unsigned int koma_x,unsigned int koma_y);
-    std::vector<Move> koma_can_put(unsigned int koma_id);
-    std::vector<Move> koma_can_put(Owner owner,unsigned int index);
+
     virtual bool pawn_spec_rule(unsigned int koma_id,unsigned int board_x,unsigned int board_y)=0;
     bool if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y);
     unsigned int x,y;

@@ -62,12 +62,12 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
             {
                 koma_x=i;
                 koma_y=j;
-                return koma_can_go(koma_x,koma_y);
+                return this->koma_can_go(koma_x,koma_y);
             }
         }
     }
 
-    return koma_can_go(koma_x,koma_y);
+    return this->koma_can_go(koma_x,koma_y);
 }
 
 std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_y)
@@ -189,7 +189,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
     return vecDest;
 }
 
-std::vector<Move> _gameboard::koma_can_put(unsigned int koma_id)
+std::vector<Move> _gameboard::koma_can_drop(unsigned int koma_id)
 {
     if (koma_id>Koma::get_total_num())
     {
@@ -206,15 +206,15 @@ std::vector<Move> _gameboard::koma_can_put(unsigned int koma_id)
             {
                 koma_owner=(Owner)i;
                 index=j;
-                return koma_can_put(koma_owner,index);
+                return this->koma_can_drop(koma_owner,index);
             }
         }
     }
 
-    return koma_can_put(koma_owner,index);
+    return this->koma_can_drop(koma_owner,index);
 }
 
-std::vector<Move> _gameboard::koma_can_put(Owner owner,unsigned int index)
+std::vector<Move> _gameboard::koma_can_drop(Owner owner,unsigned int index)
 {
     if (owner<0)
     {
