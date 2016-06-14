@@ -72,7 +72,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
 
 std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_y)
 {
-    std::vector<Move> vecMove;
+    std::vector<Move> vecDest;
     if (koma_x<0||koma_y<0||koma_x>=this->x||koma_y>=this->y)
     {
         throw "bad koma_x or koma_y in Gameboard koma_can_go";
@@ -131,7 +131,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
                     }
                     else if(this->board[koma_x+dx][koma_y+dy]==-1)
                     {
-                        vecMove.push_back(Move(dx,dy));
+                        vecDest.push_back(Move(koma_x+dx,koma_y+dy));
                     }
                     else if(this->koma_list[this->board[koma_x+dx][koma_y+dy]]->owner==koma.owner)
                     {
@@ -139,7 +139,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
                     }
                     else
                     {
-                        vecMove.push_back(Move(dx,dy));
+                        vecDest.push_back(Move(koma_x+dx,koma_y+dy));
                         break;
                     }
                 }
@@ -181,12 +181,12 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
 
             if(can == true)
             {
-                vecMove.push_back(Move(dx,dy));
+                vecDest.push_back(Move(koma_x+dx,koma_y+dy));
             }
         }
     }
 
-    return vecMove;
+    return vecDest;
 }
 
 std::vector<Move> _gameboard::koma_can_put(unsigned int koma_id)
@@ -220,7 +220,7 @@ std::vector<Move> _gameboard::koma_can_put(Owner owner,unsigned int index)
     {
         throw "bad owner in Gameboard koma_can_put";
     }
-    std::vector<Move> vecMove;
+    std::vector<Move> vecDest;
     int& koma_id=this->owner_hand[owner][index];
     if (koma_id<0||koma_id>(int)Koma::get_total_num())
     {
@@ -243,18 +243,18 @@ std::vector<Move> _gameboard::koma_can_put(Owner owner,unsigned int index)
                 {
                     if(this->pawn_spec_rule(koma_id,i,j))
                     {
-                        vecMove.push_back(Move(i,j));
+                        vecDest.push_back(Move(i,j));
                     }
                 }
                 else
                 {
-                    vecMove.push_back(Move(i,j));
+                    vecDest.push_back(Move(i,j));
                 }
             }
         }
     }
 
-    return vecMove;
+    return vecDest;
 }
 
 bool _gameboard::if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
