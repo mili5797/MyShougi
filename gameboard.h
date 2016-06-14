@@ -19,6 +19,10 @@ protected:
     _gameboard& set_owner(unsigned int koma_id,Owner owner);
     _gameboard& set_where(unsigned int koma_id,Where where);
 
+    Move& where_koma(unsigned int koma_id);
+    bool if_koma_on_board(unsigned int koma_id);
+    bool if_koma_in_hand(unsigned int koma_id);
+
     virtual bool pawn_spec_rule(unsigned int koma_id,unsigned int board_x,unsigned int board_y)=0;
     bool if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y);
     unsigned int x,y;

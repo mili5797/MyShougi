@@ -33,6 +33,7 @@ _gameboard& _gameboard::set_owner_where(unsigned int koma_id,Owner owner,Where w
     this->set_where(koma_id,where);
     return *this;
 }
+
 _gameboard& _gameboard::set_owner(unsigned int koma_id,Owner owner)
 {
     this->koma_list[koma_id]->owner=owner;
@@ -255,6 +256,46 @@ std::vector<Move> _gameboard::koma_can_drop(Owner owner,unsigned int index)
     }
 
     return vecDest;
+}
+
+Move& _gameboard::where_koma(unsigned int koma_id)
+{
+    if(this->if_koma_on_board(koma_id))
+    {
+        for (unsigned int i=0;i<this->x;i++)
+        {
+            for(unsigned int j=0;j<this->y;j++)
+            {
+                if(this->board[i][j]==(int)koma_id)
+                {
+                    return *(new Move(i,j));
+                }
+            }
+        }
+    }
+    else if(this->if_koma_in_hand(koma_id))
+    {
+        for(unsigned int i=0;i<owner_total;i++)
+        {
+            for(unsigned int j=0;j<this->owner_hand[i].size();j++)
+            {
+                if(this->owner_hand[i][j]==(int)koma_id)
+                {
+                    return *(new Move(-i,j));
+                }
+            }
+        }
+    }
+}
+
+bool _gameboard::if_koma_on_board(unsigned int koma_id)
+{
+    return (this->koma_list[koma_id]->where==on_table);
+}
+
+bool _gameboard::if_koma_in_hand(unsigned int koma_id)
+{
+    return (this->koma_list[koma_id]->where==in_hand);
 }
 
 bool _gameboard::if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
