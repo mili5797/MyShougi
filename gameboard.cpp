@@ -314,7 +314,7 @@ bool _gameboard::if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,u
         {
             int dx=koma.can_go[i].get_move_x();
             int dy=koma.can_go[i].get_move_y();
-            if (koma_x+dx>this->x||koma_x+dx<0||koma_y+dy>this->y||koma_y+dy<0)
+            if (board_x+dx>this->x||board_x+dx<0||board_y+dy>this->y||board_y+dy<0)
             {
                 continue;
             }
