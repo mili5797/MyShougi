@@ -159,7 +159,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
             }
             else if(this->board[koma_x+dx][koma_y+dy]==-1)
             {
-                ;
+                /*if no koma there, then it can*/
             }
             else if(this->koma_list[this->board[koma_x+dx][koma_y+dy]]->owner==koma.owner)
             {
@@ -168,6 +168,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
 
             bool can=true;
 
+            /*** testing if ***/
             std::vector<int> if_dx=koma.can_go[i].get_if_x(),if_dy=koma.can_go[i].get_if_y();
             for(unsigned int j=0;j<koma.can_go[i].get_num_if();j++)
             {
@@ -236,21 +237,94 @@ std::vector<Move> _gameboard::koma_can_put(Owner owner,unsigned int index)
             {
                 continue;
             }
-            else if((koma.get_koma_name()!=Koma_Pawn)||false)
+            else if(this->if_koma_can_move_in((unsigned int)koma_id,i,j))
             {
                 vecMove.push_back(Move(i,j));
-            }
-            else if((koma.get_koma_name()!=Koma_Pawn)||false)
-            {
-                if(j!=(this->y)-1)
-                {
-                    vecMove.push_back(Move(i,j));
-                }
             }
         }
     }
 
     return vecMove;
+}
+
+bool _gameboard::if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
+{
+    if (board_x>=this->x||board_y>=this->y)
+    {
+        throw "bad board_x or board_y in Gameboard if_koma_can_move_in";
+    }
+    if(koma_id>Koma::get_total_num())
+    {
+        throw "bad koma_id in if_koma_can_move_in";
+    }
+
+    Koma& koma=*(this->koma_list[koma_id]);
+    if(koma.rush==true)
+    {
+        for(unsigned int i=0;i<Dir_total;i++)
+        {
+            if(koma.direct[i]==true)
+            {
+                int dx=0,dy=0;
+                switch (i)
+                {
+                    case Dir_Forward:
+                        dy++;
+                        break;
+                    case Dir_RFront:
+                        dx++;
+                        dy++;
+                    case Dir_Right:
+                        dx++;
+                        break;
+                    case Dir_RBack:
+                        dx++;
+                        dy--;
+                        break;
+                    case Dir_Backward:
+                        dy--;
+                        break;
+                    case Dir_LBack:
+                        dx--;
+                        dy--;
+                        break;
+                    case Dir_Left:
+                        dx--;
+                        break;
+                    case Dir_LFront:
+                        dx--;
+                        dy++;
+                        break;
+                }
+
+                if(board_x+dx>this->x||board_x+dx<0||board_y+dy>this->y||board_y+dy<0)
+                {
+                    continue;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    if (koma.jump==true)
+    {
+        for(unsigned int i=0;i<koma.can_go.size();i++)
+        {
+            int dx=koma.can_go[i].get_move_x();
+            int dy=koma.can_go[i].get_move_y();
+            if (koma_x+dx>this->x||koma_x+dx<0||koma_y+dy>this->y||koma_y+dy<0)
+            {
+                continue;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 
