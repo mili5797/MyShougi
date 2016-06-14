@@ -180,6 +180,7 @@ _koma& _koma::promote()
     else
     {
         this->promotion=true;
+        this->koma_promote();
     }
 
     return *this;

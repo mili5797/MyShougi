@@ -41,6 +41,7 @@ public:
     static unsigned int get_total_num();
     Name get_koma_name();
 protected:
+    virtual _koma& koma_promote()=0;
     Where where;
     Owner owner;
     bool can_promotion;
@@ -59,14 +60,14 @@ typedef class _rush_koma:public Koma{
 public:
     _rush_koma();
 protected:
-
+    virtual _koma& koma_promote()=0;
 }Rush; //abstract class of koma which using rush to move
 
 typedef class _jump_koma:public Koma{
 public:
     _jump_koma();
 protected:
-
+    virtual _koma& koma_promote()=0;
 }Jump; //abstract class of koma which using jump to move
 
 #endif // __KOMA_H_
