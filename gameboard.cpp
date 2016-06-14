@@ -239,7 +239,17 @@ std::vector<Move> _gameboard::koma_can_put(Owner owner,unsigned int index)
             }
             else if(this->if_koma_can_move_in((unsigned int)koma_id,i,j))
             {
-                vecMove.push_back(Move(i,j));
+                if(koma.get_koma_name()==Koma_Pawn)
+                {
+                    if(this->pawn_spec_rule(koma_id,i,j))
+                    {
+                        vecMove.push_back(Move(i,j));
+                    }
+                }
+                else
+                {
+                    vecMove.push_back(Move(i,j));
+                }
             }
         }
     }
@@ -368,12 +378,22 @@ _small_gameboard::_small_gameboard()
 // x 0 1 2
 }
 
+bool _small_gameboard::pawn_spec_rule(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
+{
+    return true;
+}
+
 
 _midium_gameboard::_midium_gameboard()
 {
     this->x=5;
     this->y=6;
     this->initial_board();
+}
+
+bool _midium_gameboard::pawn_spec_rule(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
+{
+    return true;
 }
 
 
@@ -383,3 +403,9 @@ _normal_gameboard::_normal_gameboard()
     this->y=9;
     this->initial_board();
 }
+
+bool _normal_gameboard::pawn_spec_rule(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
+{
+    return true;
+}
+
