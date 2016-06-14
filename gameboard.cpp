@@ -55,17 +55,11 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
 
     int koma_x=-1,koma_y=-1;
 
-    for (unsigned int i=0;i<this->x;i++)
+    if(this->if_koma_on_board(koma_id))
     {
-        for(unsigned int j=0;j<this->y;j++)
-        {
-            if(this->board[i][j]==(int)koma_id)
-            {
-                koma_x=i;
-                koma_y=j;
-                return this->koma_can_go(koma_x,koma_y);
-            }
-        }
+        Move& where_koma=this->where_koma(koma_id);
+        koma_x=where_koma.get_move_x();
+        koma_y=where_koma.get_move_y();
     }
 
     return this->koma_can_go(koma_x,koma_y);
@@ -199,17 +193,11 @@ std::vector<Move> _gameboard::koma_can_drop(unsigned int koma_id)
 
     Owner koma_owner=(Owner)-1;
     unsigned int index=0;
-    for(unsigned int i=0;i<owner_total;i++)
+    if(this->if_koma_in_hand(koma_id))
     {
-        for(unsigned int j=0;j<this->owner_hand[i].size();j++)
-        {
-            if(this->owner_hand[i][j]==(int)koma_id)
-            {
-                koma_owner=(Owner)i;
-                index=j;
-                return this->koma_can_drop(koma_owner,index);
-            }
-        }
+        Move& where_koma=this->where_koma(koma_id);
+        koma_owner=(Owner)(where_koma.get_move_x()*(-1));
+        index=(unsigned int)where_koma.get_move_y();
     }
 
     return this->koma_can_drop(koma_owner,index);
