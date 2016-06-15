@@ -27,25 +27,6 @@ _gameboard& _gameboard::initial_board()
     return *this;
 }
 
-_gameboard& _gameboard::set_owner_where(unsigned int koma_id,Owner owner,Where where)
-{
-    this->set_owner(koma_id,owner);
-    this->set_where(koma_id,where);
-    return *this;
-}
-
-_gameboard& _gameboard::set_owner(unsigned int koma_id,Owner owner)
-{
-    this->koma_list[koma_id]->owner=owner;
-    return *this;
-}
-
-_gameboard& _gameboard::set_where(unsigned int koma_id,Where where)
-{
-    this->koma_list[koma_id]->where=where;
-    return *this;
-}
-
 std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
 {
     if (!is_koma_id(koma_id))
@@ -244,6 +225,25 @@ std::vector<Move> _gameboard::koma_can_drop(Owner owner,unsigned int index)
     }
 
     return vecDest;
+}
+
+_gameboard& _gameboard::set_owner_where(unsigned int koma_id,Owner owner,Where where)
+{
+    this->set_owner(koma_id,owner);
+    this->set_where(koma_id,where);
+    return *this;
+}
+
+_gameboard& _gameboard::set_owner(unsigned int koma_id,Owner owner)
+{
+    this->koma_list[koma_id]->owner=owner;
+    return *this;
+}
+
+_gameboard& _gameboard::set_where(unsigned int koma_id,Where where)
+{
+    this->koma_list[koma_id]->where=where;
+    return *this;
 }
 
 Move& _gameboard::where_koma(unsigned int koma_id)
