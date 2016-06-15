@@ -512,11 +512,11 @@ _gameboard& _gameboard::koma_go(unsigned int koma_x,unsigned int koma_y,unsigned
         {
             if(this->board[dest_x][dest_y]!=-1)
             {
-                Owner owner=koma.owner; ///
+                Owner owner=koma.get_owner();
                 unsigned int token_koma_id=this->board[go_x][go_y];
                 Koma& token_koma=*(this->koma_list[token_koma_id]);
 
-                //token_koma.be_token(owner);
+                token_koma.koma_be_token(owner);
 
                 this->owner_hand[owner].push_back(token_koma_id);
             }
