@@ -25,6 +25,8 @@ protected:
 
     virtual bool pawn_spec_rule(unsigned int koma_id,unsigned int board_x,unsigned int board_y)=0;
     bool if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y);
+    bool is_koma_id(unsigned int koma_id);
+
     unsigned int x,y;
     std::vector<std::vector<int> > board;
     std::vector<int> owner_hand[owner_total];

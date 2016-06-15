@@ -48,7 +48,7 @@ _gameboard& _gameboard::set_where(unsigned int koma_id,Where where)
 
 std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
 {
-    if (koma_id<0||koma_id>Koma::get_total_num())
+    if (!is_koma_id(koma_id))
     {
         throw "bad koma_id in Gameboard koma_can_go";
     }
@@ -73,7 +73,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
         throw "bad koma_x or koma_y in Gameboard koma_can_go";
     }
     int& koma_id=this->board[koma_x][koma_y];
-    if (koma_id<0||koma_id>(int)Koma::get_total_num())
+    if (!is_koma_id(koma_id))
     {
         throw "bad koma_x or koma_y in Gameboard koma_can_go";
     }
@@ -186,7 +186,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_x,unsigned int koma_
 
 std::vector<Move> _gameboard::koma_can_drop(unsigned int koma_id)
 {
-    if (koma_id>Koma::get_total_num())
+    if (!this->is_koma_id(koma_id))
     {
         throw "bad koma_id in Gameboard koma_can_put";
     }
@@ -211,7 +211,7 @@ std::vector<Move> _gameboard::koma_can_drop(Owner owner,unsigned int index)
     }
     std::vector<Move> vecDest;
     int& koma_id=this->owner_hand[owner][index];
-    if (koma_id<0||koma_id>(int)Koma::get_total_num())
+    if (!this->is_koma_id(koma_id))
     {
         throw "bad owner or index in Gameboard koma_can_put";
     }
@@ -292,7 +292,7 @@ bool _gameboard::if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,u
     {
         throw "bad board_x or board_y in Gameboard if_koma_can_move_in";
     }
-    if(koma_id>Koma::get_total_num())
+    if(!this->is_koma_id(koma_id))
     {
         throw "bad koma_id in if_koma_can_move_in";
     }
@@ -364,6 +364,11 @@ bool _gameboard::if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,u
         }
     }
     return false;
+}
+
+bool _gameboard::is_koma_id(unsigned int koma_id)
+{
+    return (koma_id<this->koma_list.size());
 }
 
 
