@@ -50,6 +50,7 @@ protected:
 
 private:
     virtual _koma& koma_promote();
+    virtual _koma& koma_be_token(Owner new_owner);
     static void add_total_num_pawn();
     static unsigned int total_num_pawn;
 }Pawn;
