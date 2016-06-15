@@ -227,6 +227,129 @@ std::vector<Move> _gameboard::koma_can_drop(Owner owner,unsigned int index)
     return vecDest;
 }
 
+_gameboard& _gameboard::koma_move(unsigned int koma_id,Move dest)
+{
+    if(!this->is_koma_id(koma_id))
+    {
+        throw "bad koma_id in koma_move";
+    }
+
+    unsigned int dest_x=dest.get_move_x();
+    unsigned int dest_y=dest.get_move_y();
+
+    if(this->is_koma_on_board(koma_id))
+    {
+        unsigned int koma_x=(this->where_koma(koma_id)).get_move_x();
+        unsigned int koma_y=(this->where_koma(koma_id)).get_move_y();
+        this->koma_go(koma_x,koma_y,dest_x,dest_y);
+    }
+    else if(this->is_koma_in_hand(koma_id))
+    {
+        unsigned int owner=(-1)*(this->where_koma(koma_id)).get_move_x();
+        unsigned int index=(this->where_koma(koma_id)).get_move_y();
+        this->koma_drop(owner,index,dest_x,dest_y);
+    }
+
+    return *this;
+}
+
+_gameboard& _gameboard::koma_move(unsigned int koma_id,unsigned int dest_x,unsigned int dest_y)
+{
+    if(!this->is_koma_id(koma_id))
+    {
+        throw "bad koma_id in koma_move";
+    }
+
+    if(this->is_koma_on_board(koma_id))
+    {
+        unsigned int koma_x=(this->where_koma(koma_id)).get_move_x();
+        unsigned int koma_y=(this->where_koma(koma_id)).get_move_y();
+        this->koma_go(koma_x,koma_y,dest_x,dest_y);
+    }
+    else if(this->is_koma_in_hand(koma_id))
+    {
+        unsigned int owner=(-1)*(this->where_koma(koma_id)).get_move_x();
+        unsigned int index=(this->where_koma(koma_id)).get_move_y();
+        this->koma_drop(owner,index,dest_x,dest_y);
+    }
+
+    return *this;
+}
+
+_gameboard& _gameboard::koma_move(unsigned int koma_x,unsigned int koma_y,Move dest)
+{
+    if(this->is_koma_id(this->board[koma_x][koma_y]))
+    {
+        throw "bad koma_x or koma_y in koma_move";
+    }
+
+    unsigned int dest_x=dest.get_move_x();
+    unsigned int dest_y=dest.get_move_y();
+
+    if(this->is_koma_on_board(this->board[koma_x][koma_y]))
+    {
+        this->koma_go(koma_x,koma_y,dest_x,dest_y);
+    }
+
+    return *this;
+}
+
+_gameboard& _gameboard::koma_move(unsigned int koma_x,unsigned int koma_y,unsigned int dest_x,unsigned int dest_y)
+{
+    if(this->is_koma_id(this->board[koma_x][koma_y]))
+    {
+        throw "bad koma_x or koma_y in koma_move";
+    }
+
+    if(this->is_koma_on_board(this->board[koma_x][koma_y]))
+    {
+        this->koma_go(koma_x,koma_y,dest_x,dest_y);
+    }
+
+    return *this;
+}
+
+_gameboard& _gameboard::koma_move(Owner owner,unsigned int index,Move dest)
+{
+    if(owner>owner_total||owner<0)
+    {
+        throw "bad owner in koma_move";
+    }
+    if(index>this->owner_hand[owner].size())
+    {
+        throw "bad index in koma_move";
+    }
+
+    unsigned int dest_x=dest.get_move_x();
+    unsigned int dest_y=dest.get_move_y();
+
+    if(this->is_koma_in_hand(this->owner_hand[owner][index]))
+    {
+        this->koma_drop(owner,index,dest_x,dest_y);
+    }
+
+    return *this;
+}
+
+_gameboard& _gameboard::koma_move(Owner owner,unsigned int index,unsigned int dest_x,unsigned int dest_y)
+{
+    if(owner>owner_total||owner<0)
+    {
+        throw "bad owner in koma_move";
+    }
+    if(index>this->owner_hand[owner].size())
+    {
+        throw "bad index in koma_move";
+    }
+
+    if(this->is_koma_in_hand(this->owner_hand[owner][index]))
+    {
+        this->koma_drop(owner,index,dest_x,dest_y);
+    }
+
+    return *this;
+}
+
 _gameboard& _gameboard::set_owner_where(unsigned int koma_id,Owner owner,Where where)
 {
     this->set_owner(koma_id,owner);
@@ -369,6 +492,16 @@ bool _gameboard::is_koma_can_move_in(unsigned int koma_id,unsigned int board_x,u
 bool _gameboard::is_koma_id(unsigned int koma_id)
 {
     return (koma_id<this->koma_list.size());
+}
+
+_gameboard& _gameboard::koma_go(unsigned int koma_x,unsigned int koma_y,unsigned int dest_x,unsigned int dest_y)
+{
+    return *this;
+}
+
+_gameboard& _gameboard::koma_drop(unsigned int koma_x,unsigned int koma_y,unsigned int dest_x,unsigned int dest_y)
+{
+    return *this;
 }
 
 
