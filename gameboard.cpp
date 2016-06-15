@@ -55,7 +55,7 @@ std::vector<Move> _gameboard::koma_can_go(unsigned int koma_id)
 
     int koma_x=-1,koma_y=-1;
 
-    if(this->if_koma_on_board(koma_id))
+    if(this->is_koma_on_board(koma_id))
     {
         Move& where_koma=this->where_koma(koma_id);
         koma_x=where_koma.get_move_x();
@@ -193,7 +193,7 @@ std::vector<Move> _gameboard::koma_can_drop(unsigned int koma_id)
 
     Owner koma_owner=(Owner)-1;
     unsigned int index=0;
-    if(this->if_koma_in_hand(koma_id))
+    if(this->is_koma_in_hand(koma_id))
     {
         Move& where_koma=this->where_koma(koma_id);
         koma_owner=(Owner)(where_koma.get_move_x()*(-1));
@@ -226,7 +226,7 @@ std::vector<Move> _gameboard::koma_can_drop(Owner owner,unsigned int index)
             {
                 continue;
             }
-            else if(this->if_koma_can_move_in((unsigned int)koma_id,i,j))
+            else if(this->is_koma_can_move_in((unsigned int)koma_id,i,j))
             {
                 if(koma.get_koma_name()==Koma_Pawn)
                 {
@@ -248,7 +248,7 @@ std::vector<Move> _gameboard::koma_can_drop(Owner owner,unsigned int index)
 
 Move& _gameboard::where_koma(unsigned int koma_id)
 {
-    if(this->if_koma_on_board(koma_id))
+    if(this->is_koma_on_board(koma_id))
     {
         for (unsigned int i=0;i<this->x;i++)
         {
@@ -261,7 +261,7 @@ Move& _gameboard::where_koma(unsigned int koma_id)
             }
         }
     }
-    else if(this->if_koma_in_hand(koma_id))
+    else if(this->is_koma_in_hand(koma_id))
     {
         for(unsigned int i=0;i<owner_total;i++)
         {
@@ -276,17 +276,17 @@ Move& _gameboard::where_koma(unsigned int koma_id)
     }
 }
 
-bool _gameboard::if_koma_on_board(unsigned int koma_id)
+bool _gameboard::is_koma_on_board(unsigned int koma_id)
 {
     return (this->koma_list[koma_id]->where==on_table);
 }
 
-bool _gameboard::if_koma_in_hand(unsigned int koma_id)
+bool _gameboard::is_koma_in_hand(unsigned int koma_id)
 {
     return (this->koma_list[koma_id]->where==in_hand);
 }
 
-bool _gameboard::if_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
+bool _gameboard::is_koma_can_move_in(unsigned int koma_id,unsigned int board_x,unsigned int board_y)
 {
     if (board_x>=this->x||board_y>=this->y)
     {
