@@ -137,12 +137,27 @@ _koma& _pawn::koma_promote()
     this->can_go.push_back(Move(0,-1));
     this->can_go.push_back(Move(-1,0));
     this->can_go.push_back(Move(-1,1));
+    //this->koma_name=Koma_Tokin;
+
+    this->promotion=true;
 
     //x -1 0 1
     //   . . .  1
     //   . p .  0
     //     .   -1
     //          y
+
+    return *this;
+}
+
+_koma& _pawn::koma_be_token(Owner new_owner)
+{
+    this->where=in_hand;
+    this->owner=new_owner;
+    this->can_go.erase(this->can_go.begin()+1,this->can_go.begin()+5);
+
+    this->promotion=false;
+    this->can_promotion=true;
 
     return *this;
 }

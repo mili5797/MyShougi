@@ -212,6 +212,13 @@ unsigned int _koma::get_total_num()
     return Koma::total_num;
 }
 
+_koma& _koma::koma_be_token(Owner new_owner)
+{
+    this->where=in_hand;
+    this->owner=new_owner;
+    return *this;
+}
+
 void _koma::add_total_num()
 {
     Koma::total_num++;
