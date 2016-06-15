@@ -156,6 +156,7 @@ std::vector<int> _koma_move::get_if_y()
     return this->if_y;
 }
 
+
 unsigned int _koma::total_num=0;
 
 _koma::_koma()
@@ -191,14 +192,24 @@ bool _koma::promotable()
     return this->can_promotion;
 }
 
-unsigned int _koma::get_total_num()
+Where _koma::get_where()
 {
-    return Koma::total_num;
+    return this->where;
+}
+
+Owner _koma::get_owner()
+{
+    return this->owner;
 }
 
 Name _koma::get_koma_name()
 {
     return this->koma_name;
+}
+
+unsigned int _koma::get_total_num()
+{
+    return Koma::total_num;
 }
 
 void _koma::add_total_num()
@@ -207,11 +218,14 @@ void _koma::add_total_num()
     return;
 }
 
+
 _rush_koma::_rush_koma()
 {
     this->rush=true;
     this->jump=false;
 }
+
+
 _jump_koma::_jump_koma()
 {
     this->rush=false;

@@ -36,20 +36,29 @@ private:
 typedef class _koma{
 public:
     _koma();
+
     _koma& promote();
     bool promotable();
-    static unsigned int get_total_num();
+
+    Where get_where();
+    Owner get_owner();
     Name get_koma_name();
+
+    static unsigned int get_total_num();
 protected:
     virtual _koma& koma_promote()=0;
+    virtual _koma& koma_be_token(Owner new_owner);
+
     Where where;
     Owner owner;
     bool can_promotion;
-    bool promotion;
+
     Name koma_name;
     friend class _gameboard;
+
     bool direct[Dir_total]; //Rush
     std::vector<Move> can_go; //Jump
+    bool promotion;
     bool rush,jump;
 private:
     static void add_total_num();

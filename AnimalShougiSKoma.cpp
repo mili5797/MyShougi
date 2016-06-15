@@ -29,12 +29,6 @@ unsigned int _king::get_total_num()
     return _king::total_num_king;
 }
 
-void _king::add_total_num_king()
-{
-    _king::total_num_king++;
-    return;
-}
-
 _koma& _king::koma_promote()
 {
     if(!this->promotable())
@@ -42,6 +36,12 @@ _koma& _king::koma_promote()
         throw "Undifined error in King::koma_promote";
     }
     return *this;
+}
+
+void _king::add_total_num_king()
+{
+    _king::total_num_king++;
+    return;
 }
 
 
@@ -64,12 +64,6 @@ unsigned int _elephant::get_total_num()
     return _elephant::total_num_elephant;
 }
 
-void _elephant::add_total_num_elephant()
-{
-    _elephant::total_num_elephant++;
-    return;
-}
-
 _koma& _elephant::koma_promote()
 {
     if(!this->promotable())
@@ -77,6 +71,12 @@ _koma& _elephant::koma_promote()
         throw "Undifined error in Elephant::koma_promote";
     }
     return *this;
+}
+
+void _elephant::add_total_num_elephant()
+{
+    _elephant::total_num_elephant++;
+    return;
 }
 
 
@@ -94,6 +94,15 @@ _giraffe::_giraffe()
     _giraffe::add_total_num_giraffe();
 }
 
+_koma& _giraffe::koma_promote()
+{
+    if(!this->promotable())
+    {
+        throw "Undifined error in Giraffe::koma_promote";
+    }
+    return *this;
+}
+
 unsigned int _giraffe::get_total_num()
 {
     return _giraffe::total_num_giraffe;
@@ -103,15 +112,6 @@ void _giraffe::add_total_num_giraffe()
 {
     _giraffe::total_num_giraffe++;
     return;
-}
-
-_koma& _giraffe::koma_promote()
-{
-    if(!this->promotable())
-    {
-        throw "Undifined error in Giraffe::koma_promote";
-    }
-    return *this;
 }
 
 
@@ -124,17 +124,6 @@ _pawn::_pawn()
 
     this->koma_name=Koma_Pawn;
     _pawn::add_total_num_pawn();
-}
-
-unsigned int _pawn::get_total_num()
-{
-    return _pawn::total_num_pawn;
-}
-
-void _pawn::add_total_num_pawn()
-{
-    _pawn::total_num_pawn++;
-    return;
 }
 
 _koma& _pawn::koma_promote()
@@ -157,3 +146,16 @@ _koma& _pawn::koma_promote()
 
     return *this;
 }
+
+unsigned int _pawn::get_total_num()
+{
+    return _pawn::total_num_pawn;
+}
+
+void _pawn::add_total_num_pawn()
+{
+    _pawn::total_num_pawn++;
+    return;
+}
+
+
