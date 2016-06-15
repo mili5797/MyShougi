@@ -397,6 +397,9 @@ Move& _gameboard::where_koma(unsigned int koma_id)
             }
         }
     }
+
+    throw "Undefined error in where_koma";
+    return *(new Move(0,0));
 }
 
 bool _gameboard::is_koma_on_board(unsigned int koma_id)
@@ -496,6 +499,41 @@ bool _gameboard::is_koma_id(unsigned int koma_id)
 
 _gameboard& _gameboard::koma_go(unsigned int koma_x,unsigned int koma_y,unsigned int dest_x,unsigned int dest_y)
 {
+    unsigned int koma_id=this->board[koma_x][koma_y];
+    Koma& koma=*(this->koma_list[koma_id]);
+    std::vector<Move> vecGo=this->koma_can_go(koma_x,koma_y);
+
+    for(unsigned int i=0;i<vecGo.size();i++)
+    {
+        unsigned int go_x=vecGo[i].get_move_x();
+        unsigned int go_y=vecGo[i].get_move_y();
+
+        if(go_x==dest_x&&go_y==dest_y)
+        {
+            if(this->board[dest_x][dest_y]!=-1)
+            {
+                Owner owner=koma.owner; ///
+                unsigned int token_koma_id=this->board[go_x][go_y];
+                Koma& token_koma=*(this->koma_list[token_koma_id]);
+
+                //token_koma.be_token(owner);
+
+                this->owner_hand[owner].push_back(token_koma_id);
+            }
+            this->board[dest_x][dest_y]=koma_id;
+            this->board[koma_x][koma_y]=-1;
+
+            if(!this->is_koma_can_move_in(koma_id,dest_x,dest_y))
+            {
+                koma.promote();
+            }
+
+            return *this;
+        }
+    }
+
+    throw "Undefined error in koma_go";
+
     return *this;
 }
 
