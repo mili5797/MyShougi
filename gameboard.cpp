@@ -499,8 +499,26 @@ _gameboard& _gameboard::koma_go(unsigned int koma_x,unsigned int koma_y,unsigned
     return *this;
 }
 
-_gameboard& _gameboard::koma_drop(unsigned int koma_x,unsigned int koma_y,unsigned int dest_x,unsigned int dest_y)
+_gameboard& _gameboard::koma_drop(unsigned int owner,unsigned int index,unsigned int dest_x,unsigned int dest_y)
 {
+    unsigned int koma_id=this->owner_hand[owner][index];
+    std::vector<Move> vecDrop=this->koma_can_drop((Owner)owner,index);
+
+    for(unsigned int i=0;i<vecDrop.size();i++)
+    {
+        unsigned int drop_x=vecDrop[i].get_move_x();
+        unsigned int drop_y=vecDrop[i].get_move_y();
+
+        if(drop_x==dest_x&&drop_y==dest_y)
+        {
+            this->board[dest_x][dest_y]=koma_id;
+            this->owner_hand[owner].erase(this->owner_hand[owner].begin()+index);
+            return *this;
+        }
+    }
+
+    throw "Undefined error in koma_drop";
+
     return *this;
 }
 

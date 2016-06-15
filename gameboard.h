@@ -35,7 +35,7 @@ protected:
     bool is_koma_id(unsigned int koma_id);
 
     _gameboard& koma_go(unsigned int koma_x,unsigned int koma_y,unsigned int dest_x,unsigned int dest_y);
-    _gameboard& koma_drop(unsigned int Owner,unsigned int index,unsigned int dest_x,unsigned int dest_y);
+    _gameboard& koma_drop(unsigned int owner,unsigned int index,unsigned int dest_x,unsigned int dest_y);
 
     unsigned int x,y;
     std::vector<std::vector<int> > board;
