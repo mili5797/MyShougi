@@ -350,6 +350,47 @@ _gameboard& _gameboard::koma_move(Owner owner,unsigned int index,unsigned int de
     return *this;
 }
 
+
+bool _gameboard::is_check(Owner player)
+{
+    unsigned int Ou_id=0;
+    for (unsigned int koma_id=0;this->is_koma_id(koma_id);koma_id++)
+    {
+        if(this->koma_list[koma_id]->get_koma_name()==Koma_Ou && this->koma_list[koma_id]->get_owner() == player)
+        {
+            Ou_id=koma_id;
+        }
+    }
+    Koma& Ou=*(this->koma_list[Ou_id]);
+    if(Ou.get_koma_name()!=Koma_Ou || Ou.get_owner()!=player)
+    {
+        throw "Undefined error in is_check";
+    }
+    Move& Ou_where=this->where_koma(Ou_id);
+    int Ou_x=Ou_where.get_move_x();
+    int Ou_y=Ou_where.get_move_y();
+
+    for (unsigned int koma_id=0;this->is_koma_id(koma_id);koma_id++)
+    {
+        if(this->is_koma_on_board(koma_id))
+        {
+            Koma& koma=*(this->koma_list[koma_id]);
+            if(koma.get_owner()!=player)
+            {
+                std::vector<Move> vecMove=this->koma_can_go(koma_id);
+                for(unsigned int j=0;j<vecMove.size();j++)
+                {
+                    if(vecMove[j].get_move_x()==Ou_x&&vecMove[j].get_move_y()==Ou_y)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
 _gameboard& _gameboard::set_owner_where(unsigned int koma_id,Owner owner,Where where)
 {
     this->set_owner(koma_id,owner);
