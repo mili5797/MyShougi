@@ -6,6 +6,18 @@ _gameboard::_gameboard()
     this->y=0;
 }
 
+_gameboard::_gameboard(const _gameboard& rgb)
+{
+    this->x=rgb.x;
+    this->y=rgb.y;
+    this->board=rgb.board;
+    this->owner_hand=rgb.owner_hand;
+    for(unsigned int i=0;i<rgb.koma_list.size();i++)
+    {
+        ///this->koma_list.push_back(********copy by (rgb.koma_list[i])******);
+    }
+}
+
 _gameboard& _gameboard::initial_board()
 {
     if(this->x<=0||this->y<=0)
