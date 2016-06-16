@@ -21,7 +21,11 @@ public:
     _gameboard& koma_move(unsigned int koma_x,unsigned int koma_y,unsigned int dest_x,unsigned int dest_y);
     _gameboard& koma_move(Owner owner,unsigned int index,Move dest);
     _gameboard& koma_move(Owner owner,unsigned int index,unsigned int dest_x,unsigned int dest_y);
+
+    bool is_win(Owner player);
+    bool is_checkmate(Owner player);
     bool is_check(Owner player);
+    bool is_check(Owner player,unsigned int koma_id,unsigned int dest_x,unsigned int dest_y);
 protected:
     _gameboard& set_owner_where(unsigned int koma_id,Owner owner,Where where);
     _gameboard& set_owner(unsigned int koma_id,Owner owner);
