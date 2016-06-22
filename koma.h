@@ -52,6 +52,8 @@ private:
 typedef class _koma{
 public:
     _koma();
+    _koma(const _koma&);
+    _koma(const _koma*);
 
     _koma& promote();
     bool promotable();
