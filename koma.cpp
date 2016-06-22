@@ -1,5 +1,6 @@
 #include "koma.h"
 #include <cstdarg>
+#include <iostream>
 
 _koma_move::_koma_move()
 {
@@ -166,6 +167,40 @@ _koma::_koma()
     this->promotion=false;
     this->rush=false;
     this->jump=false;
+}
+
+_koma::_koma(const _koma& rKoma)
+{
+    this->where=rKoma.where;
+    this->owner=rKoma.owner;
+    this->can_promotion=rKoma.can_promotion;
+
+    this->koma_name=rKoma.koma_name;
+
+    for(unsigned int i=0;i<Dir_total;i++)
+        this->direct[i]=rKoma.direct[i];
+    this->can_go=rKoma.can_go;
+    this->promotion=rKoma.promotion;
+    this->rush=rKoma.rush;
+    this->jump=rKoma.jump;
+    std::cout<<"copy constructor with rKoma"<<std::endl;
+}
+
+_koma::_koma(const _koma* pKoma)
+{
+    this->where=pKoma->where;
+    this->owner=pKoma->owner;
+    this->can_promotion=pKoma->can_promotion;
+
+    this->koma_name=pKoma->koma_name;
+
+    for(unsigned int i=0;i<Dir_total;i++)
+        this->direct[i]=pKoma->direct[i];
+    this->can_go=pKoma->can_go;
+    this->promotion=pKoma->promotion;
+    this->rush=pKoma->rush;
+    this->jump=pKoma->jump;
+    std::cout<<"copy constructor with pKoma"<<std::endl;
 }
 
 _koma& _koma::promote()
