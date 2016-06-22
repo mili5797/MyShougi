@@ -8,6 +8,7 @@ typedef class _gameboard{
 public:
     _gameboard();
     _gameboard(const _gameboard& copyRef);
+    //~_gameboard();
     _gameboard& initial_board();
 
     std::vector<Move> koma_can_go(unsigned int koma_id);

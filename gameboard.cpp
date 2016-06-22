@@ -11,13 +11,54 @@ _gameboard::_gameboard(const _gameboard& rgb)
     this->x=rgb.x;
     this->y=rgb.y;
     this->board=rgb.board;
-    this->owner_hand=rgb.owner_hand;
+    for(unsigned int i=0;i<owner_total;i++)
+        this->owner_hand[i]=rgb.owner_hand[i];
     for(unsigned int i=0;i<rgb.koma_list.size();i++)
     {
         ///this->koma_list.push_back(********copy by (rgb.koma_list[i])******);
+        Koma* pKoma;
+        switch((int)rgb.koma_list[i]->koma_name)
+        {
+        case Koma_King:
+            pKoma=new King(*((King*)rgb.koma_list[i]));
+            break;
+        case Koma_Elephant:
+            pKoma=new Elephant(*((Elephant*)rgb.koma_list[i]));
+            break;
+        case Koma_Giraffe:
+            pKoma=new Giraffe(*((Giraffe*)rgb.koma_list[i]));
+            break;
+        case Koma_Pawn:
+        case Koma_pPawn:
+            pKoma=new Pawn(*((Pawn*)rgb.koma_list[i]));
+            break;
+        case Koma_Gold:
+            break;
+        case Koma_Silver:
+        case Koma_pSilver:
+            break;
+        case Koma_Knight:
+        case Koma_pKnight:
+            break;
+        case Koma_Lance:
+        case Koma_pLance:
+            break;
+        case Koma_Rock:
+        case Koma_Dragon:
+            break;
+        case Koma_Bishop:
+        case Koma_Horse:
+            break;
+        }
+        this->koma_list.push_back(pKoma);
     }
 }
+/*
+_gameboard::~_gameboard()
+{
 
+}
+*/
 _gameboard& _gameboard::initial_board()
 {
     if(this->x<=0||this->y<=0)

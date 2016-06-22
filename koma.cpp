@@ -183,7 +183,6 @@ _koma::_koma(const _koma& rKoma)
     this->promotion=rKoma.promotion;
     this->rush=rKoma.rush;
     this->jump=rKoma.jump;
-    std::cout<<"copy constructor with rKoma"<<std::endl;
 }
 
 _koma::_koma(const _koma* pKoma)
@@ -200,7 +199,6 @@ _koma::_koma(const _koma* pKoma)
     this->promotion=pKoma->promotion;
     this->rush=pKoma->rush;
     this->jump=pKoma->jump;
-    std::cout<<"copy constructor with pKoma"<<std::endl;
 }
 
 _koma& _koma::promote()
